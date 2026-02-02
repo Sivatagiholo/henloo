@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Legysziii</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: pink;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 20px 0 8px;
+            font-size: 2rem;
+            color: #800000;
+        }
+
+        /* Top GIF (visible by default, centered above the buttons) */
+        .top-gif {
+            width: 25%;
+            height: 15%;
+            margin: 8px auto 16px;
+        }
+        .top-gif img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Buttons row */
+        .gombok {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+            margin: 8px 16px;
+			width:auto;
+			height:auto;
+        }
+
+        .gombok input[type="button"] {
+            padding: 8px 16px;
+            font-size: 1rem;
+            cursor: pointer;
+			
+        }
+
+        /* Bottom GIF containers (hidden until shown) */
+        .below-gif {
+            width: 300px;
+            height: 200px;
+            margin: 12px auto;
+            display: none;
+        }
+        .below-gif img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+.floating-gif {
+    position: absolute;
+    width: 150px;
+    height: auto;
+    pointer-events: none;
+}
+    </style>
+</head>
+<body>
+<h1 id="label">Leszel a valentinom legysziiiiii?</h1>
+    <!-- Top GIF: visible by default -->
+    <div class="top-gif" id="topGif">
+        <img id="topGifImg" alt="Top animated GIF">
+    </div>
+
+    <div class="gombok">
+        <input id="Button1" type="button" value="yeeas" />
+        <input id="Button2" type="button" value="nouu" />
+    </div>
+
+    
+
+    <script>
+(function () {
+    const btn1 = document.getElementById('Button1');
+    const btn2 = document.getElementById('Button2');
+    const topGifImg = document.getElementById('topGifImg');
+
+    	const gifPathTop = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjJiNHA5cWp1ZmxqcDZzZzdodHdzbWNqbm9vYjVjZjh0cHljenNiYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TTGENBI4UfZN0yL9Mg/giphy.gif";
+	const gifCuki = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGhyb29tcGhicWQxbWFzZGN0emhnZGo3dGp0anc4Ymh4eXYyZXJlMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Bcs1wakTZsA7iTK8of/giphy.gif";
+	const gifNoo = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOW9uZ2JkNnFqbDhmejJxbDh6ZW1zZzc0c2ZiMWQ4dmRzdTF6Y2RjdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TojaGiorNxF0MClSuj/giphy.gif";
+
+    topGifImg.src = gifPathTop;
+
+    function removeGifsByClass(className) {
+        document.querySelectorAll("." + className).forEach(gif => gif.remove());
+    }
+
+    function spawnGif(path, className) {
+        const img = document.createElement("img");
+        img.src = path;
+        img.className = "floating-gif " + className;
+
+        img.style.left = Math.random() * (window.innerWidth - 150) + "px";
+        img.style.top  = Math.random() * (window.innerHeight - 150) + "px";
+
+        document.body.appendChild(img);
+    }
+
+    // Button1 → cuki.gif, törli a noo gifeket
+    btn1.addEventListener("click", () => {
+    removeGifsByClass("noo");
+    spawnGif(gifCuki, "cuki");
+    label.textContent = "Juppiiiiiii";
+    topGifImg.src = gifPathTop + "?t=" + Date.now();
+    });
+
+    // Button2 → noo.gif, törli a cuki gifeket
+    btn2.addEventListener("click", () => {
+    removeGifsByClass("cuki");
+    spawnGif(gifNoo, "noo");
+    label.textContent = ":(((((";
+    topGifImg.src = gifPathTop + "?t=" + Date.now();
+    });
+})();
+const label = document.getElementById("label");
+
+</script>
+
+</body>
